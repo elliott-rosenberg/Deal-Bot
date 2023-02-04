@@ -22,87 +22,87 @@ function onSubmit(e) {
   var photoFile = DriveApp.getFileById(photoId);
   photoFile.setSharing(DriveApp.Access.ANYONE, DriveApp.Permission.VIEW);
   var photoUrl = baseUrl + photoId;
-  Logger.log(photoUrl);
+  Logger.log(photoUrl); 
 
-  var endpoint = 'https://hooks.slack.com/services/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'
+  var endpoint = 'https://hooks.slack.com/services/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'
   var payload = {
   "text" : "A new DEAL rating for " + map['Restaurant Name'] + " has been submitted. Check it out now!",
-    "blocks": [
-        {
-            "type": "section",
-            "text": {
-                "type": "mrkdwn",
-                "text": "Hello crandonian food eaters! A new D.E.A.L. rating has been posted. Your fellows *" + map['Judges'] +  "* have decided to rank *" + map['Restaurant Name'] +  "* in *" + map['Location'] +  "*. \n\n "
-            }
-        },
+	"blocks": [
+		{
+			"type": "section",
+			"text": {
+				"type": "mrkdwn",
+				"text": "Hello crandonian food eaters! A new D.E.A.L. rating has been posted. Your fellows *" + map['Judges'] +  "* have decided to rank *" + map['Restaurant Name'] +  "* in *" + map['Location'] +  "*. \n\n "
+			}
+		},
     {
-            "type": "section",
-            "text": {
-                "type": "mrkdwn",
-                "text": "*See below for the final rating along with comments and photos:*"
-            }
+			"type": "section",
+			"text": {
+				"type": "mrkdwn",
+				"text": map['Tournament'] + ": *See below for the final rating along with comments and photos:*"
+			}
     },
-        {
-            "type": "image",
-            "image_url": photoUrl,
-            "alt_text": "restaurant"
-        },
-        {
-            "type": "section",
-            "text": {
-                "type": "mrkdwn",
-                "text": "*Final Rating* \n *" + final +  "* \n " + giveMessage(final, map) + "\n\n *Average Ratings:*\n *Ambiance:* " + getAverage(map, 'Ambiance') + "\n *Service:* " + getAverage(map, 'Service') + "\n *Presentation:* " + getAverage(map, 'Presentation') + "\n *Taste:* " + getAverage(map, 'Taste') + "\n *Affect:* " + getAverage(map, 'Affect') + "\n *It Factor:* " + getAverage(map, 'It Factor') + "\n \n *Average Price per Portion:* " + ppPortion + "\n *Current Weights:* Ambiance - " + ambW + ", Service - " + serW + ", Presentation - " + preW + ", Taste - " + tasW + ", Affect - " + affW + ", It Factor - " + itW + ", Indexing Constant - " + k
-            }
-        },
-        {
-            "type": "divider"
-        },
-        {
-            "type": "section",
-            "text": {
-                "type": "mrkdwn",
-                "text": "*Comments* \n " + map['Final Review']
-            }
-        },
-        {
-            "type": "divider"
-        },
-        {
-            "type": "actions",
-            "elements": [
-                {
-                    "type": "button",
-                    "text": {
-                        "type": "plain_text",
-                        "text": "Restaurant ",
-                        "emoji": true
-                    },
+		{
+			"type": "image",
+			"image_url": photoUrl,
+			"alt_text": "restaurant"
+		},
+		{
+			"type": "section",
+			"text": {
+				"type": "mrkdwn",
+				"text": "*Final Rating* \n *" + final +  "* \n " + giveMessage(final, map) + "\n\n *Average Ratings:*\n *Ambiance:* " + getAverage(map, 'Ambiance').toFixed(2) + "\n *Service:* " + getAverage(map, 'Service').toFixed(2) + "\n *Presentation:* " + getAverage(map, 'Presentation').toFixed(2) + "\n *Taste:* " + getAverage(map, 'Taste').toFixed(2) + "\n *Affect:* " + getAverage(map, 'Affect').toFixed(2) + "\n *It Factor:* " + getAverage(map, 'It Factor').toFixed(2) + "\n \n *Average Price per Portion:* " + ppPortion + "\n *Current Weights:* Ambiance - " + ambW + ", Service - " + serW + ", Presentation - " + preW + ", Taste - " + tasW + ", Affect - " + affW + ", It Factor - " + itW + ", Indexing Constant - " + k
+			}
+		},
+		{
+			"type": "divider"
+		},
+		{
+			"type": "section",
+			"text": {
+				"type": "mrkdwn",
+				"text": "*Comments* \n " + map['Final Review']
+			}
+		},
+		{
+			"type": "divider"
+		},
+		{
+			"type": "actions",
+			"elements": [
+				{
+					"type": "button",
+					"text": {
+						"type": "plain_text",
+						"text": "Restaurant ",
+						"emoji": true
+					},
           "value": "click_me_123",
-                    "url": "http://www.google.com/search?q=" + map['Restaurant Name'] + "%20" + map['Location']
-                },
-                {
-                    "type": "button",
-                    "text": {
-                        "type": "plain_text",
-                        "text": "Judges",
-                        "emoji": true
-                    },
-                    "value": "click_me_123",
-                    "url": "https://www.brown.edu/Athletics/Mens_Ultimate/roster.html"
-                },
-                {
-                    "type": "button",
-                    "text": {
-                        "type": "plain_text",
-                        "text": "Fill out Rating Form ",
-                        "emoji": true
-                    },
+					"url": "http://www.google.com/search?q=" + map['Restaurant Name'] + "%20" + map['Location']
+				},
+				{
+					"type": "button",
+					"text": {
+						"type": "plain_text",
+						"text": "Judges",
+						"emoji": true
+					},
+					"value": "click_me_123",
+					"url": "https://www.brown.edu/Athletics/Mens_Ultimate/roster.html"
+				},
+				{
+					"type": "button",
+					"text": {
+						"type": "plain_text",
+						"text": "Fill out Rating Form ",
+						"emoji": true
+					},
           "value": "click_me_123",
-                    "url": "https://docs.google.com/forms/d/e/1FAIpQLSe6qeDFJd6HzArD-gNOj7KSobRErkgUFI63pTSo-N2u8H4IUA/viewform?usp=sf_link"
-                }
-            ]
-        }
-    ]
+					"url": "https://docs.google.com/forms/d/e/1FAIpQLSe6qeDFJd6HzArD-gNOj7KSobRErkgUFI63pTSo-N2u8H4IUA/viewform?usp=sf_link"
+				}
+			]
+		}
+	]
 }
 
   var options = {
@@ -113,8 +113,25 @@ function onSubmit(e) {
   };
   UrlFetchApp.fetch(endpoint, options);
 
+  writeToSheet(map, final);
+
+
 
 }
+
+
+
+/**
+ * need to create the sheets API and get it to print something
+ */
+function writeToSheet(map, final){
+  const data = [map['Tournament'], map['Restaurant Name'], final, map['Type of Meal'], getAverage(map, 'Ambiance').toFixed(2), getAverage(map, 'Service').toFixed(2), getAverage(map, 'Presentation').toFixed(2), getAverage(map, 'Taste').toFixed(2), getAverage(map, 'Affect').toFixed(2), getAverage(map, 'It Factor').toFixed(2), ppPortion];
+
+  const ss = SpreadsheetApp.openById("1Sc_iKynWLphHttNTtmFeFFz0OuQnZ6gnk1WMpGNPZS0");
+  const sheet = ss.getSheetByName("DealBot Data");
+  sheet.appendRow(data);
+}
+
 
 function giveMessage(final, map){
   console.log(final);
@@ -127,10 +144,10 @@ function giveMessage(final, map){
   }  else if (3.2 <=final && final < 4){
     return "okay big fella, now we're getting there. I might take a gander to *" + map['Location'] + "* in order to eat at *" + map['Restaurant Name'] + "*.";
     }  else if (4 <=final && final < 4.5){
-    return "As far as DEALs go, *" + map['Restaurant Name'] + "* is a dap. I might start vacationing in *" + map['Location'] + "* just to get some more of that good good.";
+    return "As far as DEALs go, *" + map['Restaurant Name'] + "* is a dap. I might start vacationing in *" + map['Location'] + "* just to get some more of that good good. I don't want to wait until *"+ map['Tournament'] + "* next year.";
     }
   else {
-    return "Now that's a banger of a deal! *" + map['Restaurant Name'] + "* is the place to be, especially in *" + map['Location'] + "*.";
+    return "Now that's a banger of a deal! *" + map['Restaurant Name'] + "* is the place to be, especially at *" + map['Tournamnent'] + "*.";
   }
 
 }
@@ -207,7 +224,6 @@ function avgStars(map){
   return sum / 6;
 
 }
-
 
 
 
