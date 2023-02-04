@@ -24,7 +24,7 @@ function onSubmit(e) {
   var photoUrl = baseUrl + photoId;
   Logger.log(photoUrl); 
 
-  var endpoint = 'https://hooks.slack.com/services/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'
+  var endpoint = ################
   var payload = {
   "text" : "A new DEAL rating for " + map['Restaurant Name'] + " has been submitted. Check it out now!",
 	"blocks": [
